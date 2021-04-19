@@ -52,7 +52,15 @@ var authorSchema = mongoose.Schema({
     biography: String,
     twitter: String,
     facebook: String,
-    linkedin: String,
+    linkedin: {
+        type: String,
+        validate:{
+            validator: (text)=>{
+                return text.indexOf('https://linkedin.com') == 0;
+            },
+            message: 'Linked profile must start with https://linkedin.com'
+        }
+    },
     twitter: {
         type: String,
         validate: {
